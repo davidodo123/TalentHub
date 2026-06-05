@@ -9,10 +9,12 @@ const nextConfig: NextConfig = {
     ],
   },
   async rewrites() {
+    const wpUrl = process.env.NEXT_PUBLIC_WP_API_URL
+    if (!wpUrl) return []
     return [
       {
         source: '/api/wp/:path*',
-        destination: `${process.env.NEXT_PUBLIC_WP_API_URL}/:path*`,
+        destination: `${wpUrl}/:path*`,
       },
     ]
   },
